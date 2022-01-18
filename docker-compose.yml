@@ -1,0 +1,66 @@
+version: '3'
+
+networks:
+  bibbox-default-network:
+    external: true
+services:
+  bibbox-web:
+    container_name: bibbox-web
+    depends_on:
+    - bibbox-mysql
+    image: elabftw/elabimg:4.2.4
+    links:
+    - bibbox-mysql:mysql
+    networks:
+    - bibbox-default-network
+    restart: unless-stopped
+    volumes:
+    - ./data/web:/elabftw/uploads
+    # drop some capabilities not needed by the app
+    cap_drop:
+        - SYS_ADMIN
+        - AUDIT_WRITE
+        - MKNOD
+        - SYS_CHROOT
+        - SETFCAP
+        - NET_RAW
+        - SYS_PTRACE
+    environment:
+        - DB_HOST=mysql
+        - DB_PORT=3306
+        - DB_NAME=elabftw
+        - DB_USER=elabftw
+        - DB_PASSWORD=WnN8naVZZ4b8TrfAMSmyYeoz5vjbPTg
+        - PHP_TIMEZONE=Europe/Paris
+        - TZ=Europe/Paris
+        - SECRET_KEY=def00000aa240ecc13e480fc929c2714233069c412e9b5521a9aa368c9075a98f69b4818425defa2fe2867451809cf36ae8c067a848f943f04133411d83703bbad844343
+        - SERVER_NAME=localhost
+        - DISABLE_HTTPS=false
+        - ENABLE_LETSENCRYPT=false
+
+    ports:
+        - '8080:443'
+     
+  bibbox-mysql:
+    container_name: bibbox-mysql
+    command: --default-authentication-plugin=mysql_native_password
+    image: mysql:8.0
+    networks:
+    - bibbox-default-network
+    cap_drop:
+        - AUDIT_WRITE
+        - MKNOD
+        - SYS_CHROOT
+        - SETFCAP
+        - NET_RAW
+    cap_add:
+        - SYS_NICE
+    environment:
+        - MYSQL_ROOT_PASSWORD=N5tAmeub1DUFVb338zlXEehmWE2VXCM
+        - MYSQL_DATABASE=elabftw
+        - MYSQL_USER=elabftw
+        - MYSQL_PASSWORD=WnN8naVZZ4b8TrfAMSmyYeoz5vjbPTg
+        - TZ=Europe/Paris
+    volumes:
+        - ./data/mysql:/var/lib/mysql
+
