@@ -18,6 +18,7 @@ services:
     - ./data/web:/elabftw/uploads
     # Disable HTTPS check on login
     - ./data/login.php:/elabftw/web/login.php
+    - ./data/init.inc.php:/elabftw/web/app/init.inc.php    
     # drop some capabilities not needed by the app
     cap_drop:
         - SYS_ADMIN
