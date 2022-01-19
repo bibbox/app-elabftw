@@ -16,6 +16,8 @@ services:
     restart: unless-stopped
     volumes:
     - ./data/web:/elabftw/uploads
+    # Disable HTTPS check on login
+    - ./data/login.php:/elabftw/web/login.php
     # drop some capabilities not needed by the app
     cap_drop:
         - SYS_ADMIN
@@ -39,7 +41,7 @@ services:
         - ENABLE_LETSENCRYPT=false
 
     ports:
-        - '8080:443'
+        - '8443:443'
     proxy:
      TYPE: PRIMARY
      URLPREFIX: §§INSTANCE
