@@ -2,10 +2,10 @@
 	"name": "elabftwv4.2.4bibboxrel001",
 	"short_name": "elabftw",
 	"version": "4.2.4bibboxrel001",
-	"description": "TODO",
-	"short_description": "TODO",
+	"description": "With eLabFTW you get a modern and compliant system to track your experiments efficiently but also manage your lab with a powerful and versatile database.",
+	"short_description": "Electronic Lab Notebook",
 	"catalogue_url": "",
 	"application_url": "https://www.elabftw.net/",
-	"tags": ["TODO"],
+	"tags": ["Documentation"],
 	"application_documentation_url": "https://doc.elabftw.net"
 }
