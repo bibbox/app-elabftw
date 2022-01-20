@@ -1,29 +1,44 @@
-## Molgenis Installation Instructions 
+## ElabFTW Installation Instructions 
 
-### Start Molgenis
+### Some Command Line Work
+The installation migth take a while so be patient. The last message in the log should be something like this:
 
-Be patient this can take up to 5 minutes (its a huge app). The last message in the log should be something like this
+`TODO`
 
-`17-Sep-2021 07:24:16.134 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/usr/local/tomcat/webapps/ROOT]`
+Once installed we have to do some command line work to initilize elabftw and make it comaptible with HTTP instead of HTTPS. 
+Log into our bibbox server (e.g. via ssh) and execute the following commands:
 
-### Log in with the username admin and the password you specified in the installation. 
-The default admin user name is admin. The admin password is set during the installation within **BIBBOX**.
+* Import the database structure:
+  * `docker exec -it <instance_name>-web bin/install start`
+* Disable secrue cookies (Incompatible with HTTP):
+  * `docker exec -it <instance_name>-web sed -i 's/session.cookie_secure = true/session.cookie_secure = false' ../etc/php8/php.ini`
+* Set the app url in database (including the http://):
+  * `docker exec -it <instance_name>-mysql mysql -u elabftw --database="elabftw" --password="<password>" --execute='UPDATE config SET conf_value = "http://<instance_url>:80" WHERE conf_name = "url";'`
+
+### Retart ElabFTW
+
+Restart the app via the restart button in the BIBBOX dashboard:
 
 ![Screenshot01](assets/install-screen-01.png)
 
-### Make all further configuration steps within the Molgenis app.
-Further information can be found here https://molgenis.org/ and https://molgenis.gitbook.io/molgenis/.
 
-#### Add and manage user permissions in the Admin/User Manager Menu.
+### Start ElabFTW
 
-![Screenshot02](assets/install-screen-02.png)
+You will get to the login sceen:
 
-#### Upload your data using the Molgenis EMX format.
-Other fromats like `.csv` and `.vcf` are also supported and can be nativly uploaded.
+![Screenshot01](assets/install-screen-02.png)
 
-![Screenshot03](assets/install-screen-03.png)
+#### Register
 
-#### Navigate through your data using the Navigator.
+The first user you register will automatically be the admin user:
+
+![Screenshot01](assets/install-screen-03.png)
+
+
+#### Make all further configuration steps within the Molgenis app.
+
+Now you can login with your new admin account.
+Further information can be found here https://www.elabftw.net/ and https://doc.elabftw.net/.
 
 ![Screenshot04](assets/install-screen-04.png)
 
