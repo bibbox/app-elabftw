@@ -11,7 +11,7 @@ Log into our bibbox server (e.g. via ssh) and execute the following commands:
 * Import the database structure:
   * `docker exec -it <instance_name>-web bin/install start`
 * Disable secrue cookies (Incompatible with HTTP):
-  * `docker exec -it <instance_name>-web sed -i 's/session.cookie_secure = true/session.cookie_secure = false' ../etc/php8/php.ini`
+  * `docker exec -it <instance_name>-web sed -i 's/session.cookie_secure = true/session.cookie_secure = false/' ../etc/php8/php.ini`
 * Set the app url in database (including the http://):
   * `docker exec -it <instance_name>-mysql mysql -u elabftw --database="elabftw" --password="<password>" --execute='UPDATE config SET conf_value = "http://<instance_url>:80" WHERE conf_name = "url";'`
 
@@ -35,7 +35,7 @@ The first user you register will automatically be the admin user:
 ![Screenshot01](assets/install-screen-03.png)
 
 
-#### Make all further configuration steps within the Molgenis app.
+#### Make all further configuration steps within the ELabFTW app.
 
 Now you can login with your new admin account.
 Further information can be found here https://www.elabftw.net/ and https://doc.elabftw.net/.
