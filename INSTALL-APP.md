@@ -3,7 +3,7 @@
 ### Some Command Line Work
 The installation migth take a while so be patient. The last message in the log should be something like this:
 
-`TODO`
+`[services.d] done.`
 
 Once installed we have to do some command line work to initilize elabftw and make it comaptible with HTTP instead of HTTPS. 
 Log into our bibbox server (e.g. via ssh) and execute the following commands:
