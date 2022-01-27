@@ -13,7 +13,7 @@ After the installation follow these [instructions](INSTALL-APP.md)
 
 ## Install within BIBBOX
 
-Within BIBBOX you can use the [BIBBOX](https://bibbox.readthedocs.io/en/latest/ "BIBBOX") to install a lot of software tools. After the installation you will find your application in the dashboard. You need to make some configuration before you can use the application **please follow these [instructions](INSTALL-APP.md)***.
+Within BIBBOX you can use the [BIBBOX](https://bibbox.readthedocs.io/en/latest/ "BIBBOX") to install a lot of software tools. After the installation you will find your application in the dashboard. You need to make some configuration before you can use the application **please follow these [instructions](INSTALL-APP.md)**.
 
 ### Install Environment Variables
 
