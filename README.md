@@ -13,7 +13,7 @@ After the installation follow these [instructions](INSTALL-APP.md)
 
 ## Install within BIBBOX
 
-Within BIBBOX you can use the [BIBBOX](https://bibbox.readthedocs.io/en/latest/ "BIBBOX") to install a lot of software tools. After the installation is finished you can start your application in the dashboard.
+Within BIBBOX you can use the [BIBBOX](https://bibbox.readthedocs.io/en/latest/ "BIBBOX") to install a lot of software tools. After the installation you will find your application in the dashboard. You need to make some configuration before you can use the application **please follow these [instructions](INSTALL-APP.md)***.
 
 ### Install Environment Variables
 
@@ -44,7 +44,7 @@ To install the app locally execute the commands:
 * **Alternatively** on a *Linux* system run the bash script `intsall.sh` after cloning and change the working directory to the git repository directory.
  
 
-After the installation (might take a few minutes) open **http://localhost:8080** in your browser to access ELabFTW.
+After the installation (might take a few minutes) you need to make some configuration follow these **[instructions](INSTALL-APP.md)**. Finally you can open **http://localhost:8080** in your browser to access ELabFTW.
 
 ## Mounted Volumes
 * ./data/login.php

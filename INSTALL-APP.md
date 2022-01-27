@@ -15,7 +15,7 @@ Log into our bibbox server (e.g. via ssh) and execute the following commands:
 * Set the app url in database (including the http://):
   * `docker exec -it <instance_name>-mysql mysql -u elabftw --database="elabftw" --password="<password>" --execute='UPDATE config SET conf_value = "http://<instance_url>:80" WHERE conf_name = "url";'`
 
-### Retart ElabFTW
+### Restart ElabFTW
 
 Restart the app via the restart button in the BIBBOX dashboard:
 
