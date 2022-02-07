@@ -7,7 +7,7 @@ sleep 1
 #while ! ps | grep -q "nginx     0:00 {php-fpm8} php-fpm: pool elabpool$" -
 while ! nc -z $DB_HOST $DB_PORT 2>/dev/null
 do
-echo "INFO: Waitung for DATABASE..." >&2
+echo "INFO: Waiting for DATABASE..." >&2
 sleep 2
 done
 
