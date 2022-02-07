@@ -21,7 +21,10 @@ then
 echo "INFO: Disable secrue cookies">&2
 
 sed -i 's/session.cookie_secure = true/session.cookie_secure = false/' /etc/php8/php.ini
-reboot
+
+echo "INFO: Restart php-fpm8">&2
+pkill php-fpm8
+
 fi
 
 tail -f /dev/null
