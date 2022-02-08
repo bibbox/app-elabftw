@@ -68,4 +68,5 @@ services:
         - TZ=Europe/Paris
     volumes:
         - ./data/mysql:/var/lib/mysql
+    #command: mysql -u elabftw --database="elabftw" --password="password" --execute='UPDATE config SET conf_value = "http://localhost:8443" WHERE conf_name = "url";'
 
