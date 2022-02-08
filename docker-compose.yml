@@ -17,8 +17,8 @@ services:
     volumes:
     - ./data/web:/elabftw/uploads
     # Disable HTTPS check on login
-    - ./data/login.php:/elabftw/web/login.php
-    - ./data/init.inc.php:/elabftw/web/app/init.inc.php    
+    #- ./data/login.php:/elabftw/web/login.php
+    #- ./data/init.inc.php:/elabftw/web/app/init.inc.php    
     - ./data/new_run.sh:/elabftw/new_run.sh    
     # drop some capabilities not needed by the app
     cap_drop:
@@ -39,11 +39,11 @@ services:
         - TZ=Europe/Paris
         - SECRET_KEY=def00000aa240ecc13e480fc929c2714233069c412e9b5521a9aa368c9075a98f69b4818425defa2fe2867451809cf36ae8c067a848f943f04133411d83703bbad844343
         - SERVER_NAME=localhost
-        - DISABLE_HTTPS=true
+        - DISABLE_HTTPS=false
         - ENABLE_LETSENCRYPT=false
 
     ports:
-        - '8080:443'
+        - '8443:443'
     command: /elabftw/new_run.sh    
     
   bibbox-mysql:

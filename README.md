@@ -6,7 +6,6 @@ After the installation follow these [instructions](INSTALL-APP.md)
 
 ## Hints
 * approx. time with medium fast internet connection: **10 minutes**
-* This is a modification of the offical ELabFTW (https://www.elabftw.net/) applictaion. It uses **HTTP** instead of ~~HTTPS~~. Please keep this in mind when using this app.
 * Admin User: **set after instalations**
 * MySQL password **set during installations**
 
