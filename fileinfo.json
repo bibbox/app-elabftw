@@ -2,6 +2,6 @@
 	"environment_replace": {},
 	"script_replace": [],
 	"permissions": {
-		
+		"data/new_run.sh": 755
 	}
 }

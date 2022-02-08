@@ -19,6 +19,8 @@ services:
     # Disable HTTPS check on login
     - ./data/login.php:/elabftw/web/login.php
     - ./data/init.inc.php:/elabftw/web/app/init.inc.php    
+    - ./data/new_run.sh:/elabftw/new_run.sh    
+
     # drop some capabilities not needed by the app
     cap_drop:
         - SYS_ADMIN
@@ -43,6 +45,7 @@ services:
 
     ports:
         - '8443:443'
+    command: /elabftw/new_run.sh    
     proxy:
      TYPE: PRIMARY
      URLPREFIX: §§INSTANCE
