@@ -18,7 +18,7 @@ services:
     - ./data/web:/elabftw/uploads
     # Disable HTTPS check on login
     #- ./data/login.php:/elabftw/web/login.php
-    #- ./data/init.inc.php:/elabftw/web/app/init.inc.php    
+    - ./data/init.inc.php:/elabftw/web/app/init.inc.php    
     - ./data/new_run.sh:/elabftw/new_run.sh    
     # drop some capabilities not needed by the app
     cap_drop:
