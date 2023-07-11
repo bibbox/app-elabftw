@@ -8,7 +8,7 @@ services:
     container_name: bibbox-web
     depends_on:
     - bibbox-mysql
-    image: elabftw/elabimg:4.2.4
+    image: elabftw/elabimg:4.7.0
     links:
     - bibbox-mysql:mysql
     networks:
@@ -47,7 +47,7 @@ services:
   bibbox-mysql:
     container_name: bibbox-mysql
     command: --default-authentication-plugin=mysql_native_password
-    image: mysql:8.0
+    image: mysql:latest
     networks:
     - bibbox-default-network
     cap_drop:
