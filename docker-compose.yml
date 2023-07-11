@@ -47,7 +47,7 @@ services:
   bibbox-mysql:
     container_name: bibbox-mysql
     command: --default-authentication-plugin=mysql_native_password
-    image: mysql:latest
+    image: mysql:8.0.33
     networks:
     - bibbox-default-network
     cap_drop:
