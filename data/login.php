@@ -1,12 +1,8 @@
-<?php
-/**
- * @author Nicolas CARPi <nico-git@deltablot.email>
- * @copyright 2012 Nicolas CARPi
+* @copyright 2012 Nicolas CARPi
  * @see https://www.elabftw.net Official website
  * @license AGPL-3.0
  * @package elabftw
  */
-declare(strict_types=1);
 
 namespace Elabftw\Elabftw;
 
@@ -14,8 +10,10 @@ use Elabftw\Exceptions\DatabaseErrorException;
 use Elabftw\Exceptions\FilesystemErrorException;
 use Elabftw\Exceptions\IllegalActionException;
 use Elabftw\Exceptions\ImproperActionException;
+use Elabftw\Models\Config;
 use Elabftw\Models\Idps;
 use Elabftw\Models\Teams;
+use Elabftw\Models\Users;
 use Elabftw\Services\MfaHelper;
 use Exception;
 use function implode;
@@ -36,12 +34,16 @@ $Response->prepare($Request);
 try {
     // if we are not in https, die saying we work only in https
 //    if (!$Request->isSecure() && !$Request->server->has('HTTP_X_FORWARDED_PROTO')) {
-//        // get the url to display a link to click (without the port)
-//        $url = Tools::getUrl($Request);
-//        $message = "eLabFTW works only in HTTPS. Please enable HTTPS on your server. Or click this link : <a href='" .
+        // get the url to display a link to click
+//        $url = Config::fromEnv('SITE_URL');
+//        $message = "eLabFTW works only in HTTPS. Please enable HTTPS on your server or ensure X-Forwarded-Proto header is correctly sent by the load balancer. Or follow this link : <a href='" .
 //            $url . "'>$url</a>";
 //        throw new ImproperActionException($message);
 //    }
+
+    if ($Request->query->has('rm_teaminit')) {
+        $App->Session->remove('teaminit_done');
+    }
 
     // Show MFA if necessary
     if ($App->Session->has('mfa_auth_required')) {
@@ -52,6 +54,10 @@ try {
         // If one enables 2FA we need to provide the secret.
         // For user convenience it is provide as QR code and as plain text.
         if ($App->Session->has('enable_mfa')) {
+            // User is not fully authenticated, we load the user as we need email
+            if ($App->Session->get('enforce_mfa')) {
+                $App->Users = new Users($App->Session->get('auth_userid'));
+            }
             $MfaHelper = new MfaHelper((int) $App->Users->userData['userid'], $App->Session->get('mfa_secret'));
             $renderArr['mfaQRCodeImageDataUri'] = $MfaHelper->getQRCodeImageAsDataUri($App->Users->userData['email']);
             $renderArr['mfaSecret'] = implode(' ', str_split($App->Session->get('mfa_secret'), 4));
@@ -60,6 +66,14 @@ try {
         $Response->send();
         exit;
     }
+
+    if ($Request->query->get('switch_team') === '1') {
+        $App->Session->set('team_selection_required', true);
+        $App->Session->set('team_selection', $App->Users->userData['teams']);
+        $App->Session->set('auth_userid', $App->Users->userData['userid']);
+        $App->Session->remove('is_auth');
+    }
+
 
     // Check if already logged in
     if ($App->Session->has('is_auth')) {
@@ -79,6 +93,7 @@ try {
     $idpsArr = $Idps->readAll();
 
     $Teams = new Teams($App->Users);
+    $Teams->bypassReadPermission = true;
     $teamsArr = $Teams->readAll();
 
     if ($Request->cookies->has('kickreason')) {
