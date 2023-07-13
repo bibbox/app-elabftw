@@ -7,8 +7,7 @@ services:
   bibbox-web:
     container_name: bibbox-web
     depends_on:
-      bibbox-mysql:
-        condition: service_healthy
+    - bibbox-mysql:
     image: elabftw/elabimg:4.7.0
     links:
     - bibbox-mysql:mysql

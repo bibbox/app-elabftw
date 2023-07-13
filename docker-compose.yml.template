@@ -7,8 +7,7 @@ services:
   §§INSTANCE-web:
     container_name: §§INSTANCE-web
     depends_on:
-      §§INSTANCE-mysql
-        condition: service_healthy
+    - §§INSTANCE-mysql
     image: elabftw/elabimg:4.7.0
     links:
     - §§INSTANCE-mysql:mysql
