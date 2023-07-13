@@ -6,9 +6,6 @@ networks:
 services:
   bibbox-web:
     container_name: bibbox-web
-    command: 
-    - bin/console db:install
-    - sed -i 's/session.cookie_secure = true/session.cookie_secure = false/' ../etc/php81/php.ini
     depends_on:
     - bibbox-mysql:
     image: elabftw/elabimg:4.7.0
