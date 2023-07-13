@@ -6,6 +6,9 @@ networks:
 services:
   §§INSTANCE-web:
     container_name: §§INSTANCE-web
+    command: 
+    - bin/console db:install
+    - sed -i 's/session.cookie_secure = true/session.cookie_secure = false/' ../etc/php81/php.ini
     depends_on:
     - §§INSTANCE-mysql
     image: elabftw/elabimg:4.7.0
