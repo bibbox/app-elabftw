@@ -2,7 +2,7 @@
 
 echo "Waiting for SQL container to be ready..."
 for ((i=0; i<60; i++)); do
-    if docker exec $INST-mysql mysqladmin ping -h localhost --silent; then
+    if docker exec $INST-mysql mysqladmin ping -h $INST-mysql --silent; then
         echo "SQL container is ready!"
         break
     fi
