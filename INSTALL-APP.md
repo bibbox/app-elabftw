@@ -5,20 +5,7 @@ The installation migth take a while so be patient. The last message in the log s
 
 `[services.d] done.`
 
-Once installed we have to do some command line work to initilize elabftw and make it comaptible with HTTP instead of HTTPS. 
-Log into our bibbox server (e.g. via ssh) and execute the following commands:
-
-* Import the database structure:
-  * `docker exec -it <instance_name>-web bin/console db:install`
-* Disable secrue cookies (Incompatible with HTTP):
-  * `docker exec -it <instance_name>-web sed -i 's/session.cookie_secure = true/session.cookie_secure = false/' ../etc/php81/php.ini`
-
-### Restart ElabFTW
-
-Restart the app via the restart button in the BIBBOX dashboard:
-
-![Screenshot01](assets/install-screen-01.png)
-
+Once installed depending on the speed of the server, you might need to refresh the page a few times. This app is designed to use a temporary container, that installs the database and it might take between 2 to 10 seconds to finish.
 
 ### Start ElabFTW
 
