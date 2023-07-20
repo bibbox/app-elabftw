@@ -73,4 +73,18 @@ services:
         - TZ=Europe/Paris
     volumes:
         - ./data/mysql:/var/lib/mysql
+  
+  bibbox-dbinstall:
+    environment:
+        - INST=bibbox
+    container_name: bibbox-dbinstall
+    build: .
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+    - bibbox-default-network
+    depends_on:
+    - bibbox-web
+    links:
+    - bibbox-web:web
 

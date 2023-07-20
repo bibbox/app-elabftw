@@ -59,6 +59,7 @@ services:
       interval: 5s
       timeout: 5s
       retries: 20
+    restart: always
     networks:
     - bibbox-default-network
     cap_drop:
@@ -77,4 +78,21 @@ services:
         - TZ=Europe/Paris
     volumes:
         - ./data/mysql:/var/lib/mysql
+
+  §§INSTANCE-dbinstall:
+    environment:
+        - INST=§§INSTANCE
+    container_name: §§INSTANCE-dbinstall
+    build: .
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+    - bibbox-default-network
+    depends_on:
+    - §§INSTANCE-web
+    links:
+    - §§INSTANCE-web:web
+    
+
+  
 
