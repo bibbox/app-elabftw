@@ -39,10 +39,10 @@ The default values for the standalone installation are:
 
   
 ## Mounted Volumes
-### elabftw/elabimg Conatiner
+### elabftw/elabimg Container
   - *./data/web:/elabftw/uploads*
   - *./data/login.php:/elabftw/web/login.php*
   - *./data/init.inc.php:/elabftw/web/app/init.inc.php*
-### mysql Conatiner
+### mysql Container
   - *./data/mysql:/var/lib/mysql*
 
