@@ -4,6 +4,15 @@ This container can be installed as [BIBBOX APP](https://bibbox.readthedocs.io/en
 
 After the docker installation follow these [instructions](INSTALL-APP.md).
 
+## Hints
+
+•	Approx. time with medium fast internet connection: 10 minutes
+•	This is a modification of the offical ELabFTW (https://www.elabftw.net/) applictaion. It uses HTTP instead of HTTPs. Please keep this in mind when using this App.
+•	Admin User: set after installations
+•	MySQL password set during installations
+
+
+
 ## Standalone Installation 
 
 Clone the github repository. If necessary change the ports in the environment file `.env` and the volume mounts in `docker-compose.yml`.
@@ -11,6 +20,8 @@ Clone the github repository. If necessary change the ports in the environment fi
 ```
 git clone https://github.com/bibbox/app-elabftw
 cd app-elabftw
+mkdir -p data/mysql
+mkdir -p data/web
 docker network create bibbox-default-network
 docker-compose up -d
 ```
