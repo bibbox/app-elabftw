@@ -1,53 +1,48 @@
-# ElabFTW BIBBOX application
+# elabftw BIBBOX application
 
-This container can be installed as [BIBBOX APP](https://bibbox.readthedocs.io/en/latest/ "BIBBOX") or standalone.
- 
-After the installation follow these [instructions](INSTALL-APP.md)
+This container can be installed as [BIBBOX APP](https://bibbox.readthedocs.io/en/latest/ "BIBBOX App Store") or standalone. 
 
-## Hints
-* approx. time with medium fast internet connection: **10 minutes**
-* This is a modification of the offical ELabFTW (https://www.elabftw.net/) applictaion. It uses **HTTP** instead of ~~HTTPS~~. Please keep this in mind when using this app.
-* Admin User: **set after instalations**
-* MySQL password **set during installations**
+After the docker installation follow these [instructions](INSTALL-APP.md).
 
+## Standalone Installation 
+
+Clone the github repository. If necessary change the ports in the environment file `.env` and the volume mounts in `docker-compose.yml`.
+
+```
+git clone https://github.com/bibbox/app-elabftw
+cd app-elabftw
+docker network create bibbox-default-network
+docker-compose up -d
+```
+
+The main App can be opened and set up at:
+```
+http://localhost:8443
+```
 
 ## Install within BIBBOX
 
-Within BIBBOX you can use the [BIBBOX](https://bibbox.readthedocs.io/en/latest/ "BIBBOX") to install a lot of software tools. After the installation you will find your application in the dashboard. You need to make some configuration before you can use the application **please follow these [instructions](INSTALL-APP.md)**.
+Visit the BIBBOX page and find the App by its name in the store. Click on the symbol and select install. Then fill the parameters below and name your App, click install again.
 
-### Install Environment Variables
+## Docker Images used
+  - [elabftw/elabimg](https://hub.docker.com/r/elabftw/elabimg) 
+  - [mysql](https://hub.docker.com/r/mysql) 
 
- * DB_PASSWORD = MySQL password
+
  
+## Install Environment Variables
+  - DB_PASSWORD = MySQL Password, please change for production
+
+  
 The default values for the standalone installation are:
+  - DB_PASSWORD = password
 
- * DB_PASSWORD = password
-
-## Docker Images Used
- * [elabftw/elabimg:4.2.4](https://hub.docker.com/r/elabftw/elabimg), offical elabftw container 
- * [mysql:8.0](https://hub.docker.com/_/mysql), offical mysql container
- 
-## Standalone Installation
-
-To install the app locally execute the commands:
-* Clone the git repository: 
-  * `https://github.com/bibbox/app-elabftw.git`
-* Change the current directory to app-molgenis: 
-  * `cd app-elabftw/` 
-* Create the directories `data/mysql`, `data/web`:
-  * `mkdir -p data/mysql` 
-  * `mkdir -p data/web`
-* Create the docker network `bibbox-default-network`: 
-  * `docker network create bibbox-default-network`
-* Run **docker-compose up** in the root folder of the project: 
-  * `docker-compose up -d`
-* **Alternatively** on a *Linux* system run the bash script `intsall.sh` after cloning and change the working directory to the git repository directory.
- 
-
-After the installation (might take a few minutes) you need to make some configuration follow these **[instructions](INSTALL-APP.md)**. Finally you can open **http://localhost:8080** in your browser to access ELabFTW.
-
+  
 ## Mounted Volumes
-* ./data/login.php
-* ./data/init.inc.php
-* ./data/web
-* ./data/mysql
+### elabftw/elabimg Container
+  - *./data/web:/elabftw/uploads*
+  - *./data/login.php:/elabftw/web/login.php*
+  - *./data/init.inc.php:/elabftw/web/app/init.inc.php*
+### mysql Container
+  - *./data/mysql:/var/lib/mysql*
+
