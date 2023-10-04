@@ -26,6 +26,9 @@ docker network create bibbox-default-network
 docker-compose up -d
 ```
 
+•	Alternatively on a Linux system run the bash script intsall.sh after cloning and change the working directory to the git repository directory.
+
+
 The main App can be opened and set up at:
 ```
 http://localhost:8443
