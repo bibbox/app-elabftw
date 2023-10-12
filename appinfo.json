@@ -1,5 +1,5 @@
 {
-	"name": "elabftwv4.2.4bibboxrel001",
+	"name": "elabftw",
 	"short_name": "elabftw",
 	"version": "4.2.4bibboxrel001",
 	"description": "With eLabFTW you get a modern and compliant system to track your experiments efficiently but also manage your lab with a powerful and versatile database.",
@@ -7,5 +7,6 @@
 	"catalogue_url": "",
 	"application_url": "https://www.elabftw.net/",
 	"tags": ["Documentation"],
-	"application_documentation_url": "https://doc.elabftw.net"
+	"application_documentation_url": "https://doc.elabftw.net",
+	"instance_information": "work in progress"
 }
