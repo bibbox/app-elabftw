@@ -1,7 +1,7 @@
 {
 	"name": "eLabFTW 4.7.0",
 	"short_name": "elabftw",
-	"version": "4.7.0-dev",
+	"version": "v4.7.0",
 	"description": "With eLabFTW you get a modern and compliant system to track your experiments efficiently but also manage your lab with a powerful and versatile database.",
 	"short_description": "Electronic Lab Notebook",
 	"catalogue_url": "",
